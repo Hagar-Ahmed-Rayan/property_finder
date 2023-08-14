@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "236791999025",
+    "firebase_url": "https://propertyfinder-e71fb-default-rtdb.firebaseio.com",
+    "project_id": "propertyfinder-e71fb",
+    "storage_bucket": "propertyfinder-e71fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236791999025:android:162feb6f3908e018a6c310",
+        "android_client_info": {
+          "package_name": "com.name.propertyfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236791999025-2mc2678csovkqt9no3v2gh9o3398aj5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.name.propertyfinder",
+            "certificate_hash": "f1042f35a3c12905cb7d227efe19ec007047a0fb"
+          }
+        },
+        {
+          "client_id": "236791999025-qvc7t9lho3mp54p5po3e6ijijd8lubi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfn7WQ39ecsQu07ZtzfjiymITsxVkWM0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236791999025-nlaqfo71i060ru2eqfonj8j37c4ikvig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
