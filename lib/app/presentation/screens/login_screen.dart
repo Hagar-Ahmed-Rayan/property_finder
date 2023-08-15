@@ -1,15 +1,11 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:propertyfinder/core/signin_methods.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'package:propertyfinder/core/shared.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:propertyfinder/core/shared.dart';
+import 'package:propertyfinder/core/signin_methods.dart';
 
-class loginscreen extends StatelessWidget {
-  const loginscreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,23 +63,22 @@ class loginscreen extends StatelessWidget {
                             defaultFormField(
                               controller: emailController,
                               type: TextInputType.emailAddress,
-                              validate: (dynamic? value) {
+                              validate: (dynamic value) {
                                 if (value!.isEmpty) {
                                   return 'please enter your email address';
                                 }
                               },
                               label: 'Email Address',
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15.0,
                             ),
                             defaultFormField(
                               controller: passwordController,
                               type: TextInputType.visiblePassword,
                               label: 'Password',
-                              validate: (dynamic? value) {
-                                if (value!.isEmpty)
-                                  return 'please enter your password ';
+                              validate: (dynamic value) {
+                                if (value!.isEmpty) return 'please enter your password ';
                               },
 
                               /* onSubmit: (value) {
@@ -98,13 +93,19 @@ class loginscreen extends StatelessWidget {
                           ])),
                   //   isPassword: ShopLoginCubit.get(context).isPassword,
 
-                  SizedBox(
+                  const SizedBox(
                     height: 50.0,
                   ),
 
                   Container(
                     width: 300,
                     height: 50.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        3,
+                      ),
+                      color: Colors.green,
+                    ),
                     child: MaterialButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
@@ -124,22 +125,16 @@ class loginscreen extends StatelessWidget {
                         //            if(ShopLoginCubit.get(context).sucessmess=='Success')
                       },
                       // function,
-                      child: Text(
+                      child: const Text(
                         'log in',
                         style: TextStyle(
                           color: Colors.white,
                         ),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        3,
-                      ),
-                      color: Colors.green,
-                    ),
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
 
@@ -148,9 +143,8 @@ class loginscreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                              onTap: () {}, child: Text(' forget password?')),
-                          SizedBox(
+                          GestureDetector(onTap: () {}, child: const Text(' forget password?')),
+                          const SizedBox(
                             width: 5,
                           ),
                           defaultTextButton(
@@ -168,28 +162,28 @@ class loginscreen extends StatelessWidget {
                             Container(
                               width: 80,
                               height: 2.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.green,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Text('OR Continue with'),
-                            SizedBox(
+                            const Text('OR Continue with'),
+                            const SizedBox(
                               width: 5,
                             ),
                             Container(
                               width: 80,
                               height: 2.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.green,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Padding(
@@ -199,19 +193,18 @@ class loginscreen extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () async {
-                                UserCredential? credential =
-                                    await signInWithFacebook();
+                                UserCredential? credential = await signInWithFacebook();
                                 if (credential != null) {
                                   print(" User signed in successfully,");
                                   // User signed in successfully, continue with your app logic
                                 } // Handle Facebook button press
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.facebook,
                                 size: 24,
                               ),
                             ),
-                            SizedBox(width: 16),
+                            const SizedBox(width: 16),
                             IconButton(
                               onPressed: () async {
                                 User currentGoogleUser;
@@ -248,13 +241,13 @@ class loginscreen extends StatelessWidget {
                                 //   // Handle sign-in error if any
                                 // }
                               },
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.email, //google
 
                                 size: 24,
                               ),
                             ),
-                            SizedBox(width: 16),
+                            const SizedBox(width: 16),
                             Column(
                               children: [
                                 /*      Container(
@@ -277,7 +270,7 @@ class loginscreen extends StatelessWidget {
                                     //    verifyPhoneNumber(phoneController.text);
                                     //   verifyPhoneNumber("+201094039861");
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.message,
                                     size: 24,
                                   ),

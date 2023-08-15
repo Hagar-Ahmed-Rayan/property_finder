@@ -1,26 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final GoogleSignIn googleSignIn = GoogleSignIn(
-
-
-);
+final GoogleSignIn googleSignIn = GoogleSignIn();
 
 //    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
 Future<User?> signInWithGoogle() async {
-
-
-  final GoogleSignInAccount? googleUser = await googleSignIn.signIn();//
+  final GoogleSignInAccount? googleUser = await googleSignIn.signIn(); //
   print(googleUser);
   final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
   if (googleUser != null) {
-
     print("GoogleSignInAccounttttttttttttttttttttttttttttttttttttttttttttttttttt");
     print(googleAuth);
     final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -29,11 +21,11 @@ Future<User?> signInWithGoogle() async {
     );
 
     try {
-    //  FirebaseAuth.instance.setLogLevel(LogLevel.verbose);
+      //  FirebaseAuth.instance.setLogLevel(LogLevel.verbose);
       final UserCredential userCredential = await _auth.signInWithCredential(credential);
 
       // Access the signed-in user's information here
-     // final User? user = userCredential.user;
+      // final User? user = userCredential.user;
 
       return userCredential.user;
     } catch (e) {
@@ -44,7 +36,9 @@ Future<User?> signInWithGoogle() async {
   }
 
   throw Exception('Google sign-in was canceled or unsuccessful.');
-}Future<User?> authenticateWithGoogle() async {
+}
+
+Future<User?> authenticateWithGoogle() async {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
@@ -54,12 +48,12 @@ Future<User?> signInWithGoogle() async {
       accessToken: googleSignInAuthentication?.accessToken,
       idToken: googleSignInAuthentication?.idToken,
     );
-    final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+    final UserCredential authResult = await auth.signInWithCredential(credential);
     return authResult.user;
   }
   return null;
 }
+
 ////https://propertyfinder-e71fb.firebaseapp.com/__/auth/handler
 void signOut() async {
   await _auth.signOut(); // Sign out from Firebase Auth
@@ -75,12 +69,10 @@ Future<UserCredential?> signInWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance.login();
 
     // Obtain an access token from the signed-in user
-    final OAuthCredential credential =
-    FacebookAuthProvider.credential(result.accessToken!.token);
+    final OAuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.token);
 
     // Sign in to Firebase with the Facebook credentials
-    final UserCredential userCredential =
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
     return userCredential;
   } catch (e) {
@@ -88,6 +80,7 @@ Future<UserCredential?> signInWithFacebook() async {
     return null;
   }
 }
+
 Future<void> verifyPhoneNumber(String phoneNumber) async {
   final PhoneVerificationCompleted verified = (AuthCredential authResult) {
     // Handle successful authentication (e.g., sign-in, navigation)
@@ -95,11 +88,9 @@ Future<void> verifyPhoneNumber(String phoneNumber) async {
     signInWithCredential(authResult);
   };
 
-  final PhoneVerificationFailed verificationFailed =
-      (FirebaseAuthException authException) {
+  final PhoneVerificationFailed verificationFailed = (FirebaseAuthException authException) {
     // Handle error during verification process
-    print(
-        'Phone Verification Failed - Error Code: ${authException.code}, Message: ${authException.message}');
+    print('Phone Verification Failed - Error Code: ${authException.code}, Message: ${authException.message}');
   };
 
   final PhoneCodeSent smsSent = (String? verId, [int? forceResend]) {
@@ -112,17 +103,12 @@ Future<void> verifyPhoneNumber(String phoneNumber) async {
     print('Auto-Retrieval Timeout - Verification ID: $verId');
   };
 
-  await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: verified,
-      verificationFailed: verificationFailed,
-      codeSent: smsSent,
-      codeAutoRetrievalTimeout: autoTimeout);
+  await FirebaseAuth.instance.verifyPhoneNumber(phoneNumber: phoneNumber, verificationCompleted: verified, verificationFailed: verificationFailed, codeSent: smsSent, codeAutoRetrievalTimeout: autoTimeout);
 }
+
 Future<void> signInWithCredential(AuthCredential credential) async {
   try {
-    UserCredential userCredential =
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
     // Handle successful sign-in (e.g., save user data, navigate to home screen)
     print('Sign In Successful - UID: ${userCredential.user?.uid}');

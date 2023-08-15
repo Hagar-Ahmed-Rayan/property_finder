@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "236791999025-qovbak7frq6t730qe8c8n4i2347lm8eh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.name.propertyfinder",
+            "certificate_hash": "044951d1de404f3b0acb28396f17db3890d07bba"
+          }
+        },
+        {
           "client_id": "236791999025-qvc7t9lho3mp54p5po3e6ijijd8lubi5.apps.googleusercontent.com",
           "client_type": 3
         }

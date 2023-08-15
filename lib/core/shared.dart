@@ -1,21 +1,9 @@
-
-
-import 'dart:async';
-import 'dart:io';
-import 'dart:math';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 
 //import 'dart:html';
 
-
 Widget defaultTextButton({
-  required  function,
+  required function,
   required dynamic text,
 }) =>
     TextButton(
@@ -25,10 +13,8 @@ Widget defaultTextButton({
       ),
     );
 
-
-
 Widget defaultButton({
-  double width =300,
+  double width = 300,
   //double.infinity,
   Color background = Colors.green,
   bool isUpperCase = true,
@@ -41,47 +27,43 @@ Widget defaultButton({
     Container(
       width: width,
       height: 50.0,
-      child: MaterialButton(
-        onPressed: (){
-
-
-          navto(context,screen);
-
-        },
-        // function,
-        child: Text(
-          isUpperCase ? text.toUpperCase() : text,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           radius,
         ),
         color: background,
       ),
+      child: MaterialButton(
+        onPressed: () {
+          navto(context, screen);
+        },
+        // function,
+        child: Text(
+          isUpperCase ? text.toUpperCase() : text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
 
-
 void navto(context, widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => widget,
-  ),
-);
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );
 
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
   onSubmit,
-  double width =300,
+  double width = 300,
 
   // Function onChange,
   //Function onTap,
   bool isPassword = false,
-  required  validate,
+  required validate,
   required dynamic label,
 }) =>
     SizedBox(
@@ -89,39 +71,35 @@ Widget defaultFormField({
       child: TextFormField(
         controller: controller,
         keyboardType: type,
-
-        style: TextStyle(
-
-          color: Colors.black,),
-
+        style: const TextStyle(
+          color: Colors.black,
+        ),
         obscureText: isPassword,
         onFieldSubmitted: onSubmit,
         validator: validate,
         decoration: InputDecoration(
           labelText: label,
-
-
         ),
       ),
     );
 
-
-
 Widget myDivider() => Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 20.0,
-  ),
-  child: Container(
-    width: double.infinity,
-    height: 1.0,
-    color: Colors.grey[300],
-  ),
-);
+      padding: const EdgeInsetsDirectional.only(
+        start: 20.0,
+      ),
+      child: Container(
+        width: double.infinity,
+        height: 1.0,
+        color: Colors.grey[300],
+      ),
+    );
+
 Widget fullDivider() => Container(
-  width: double.infinity,
-  height: 1.0,
-  color: Colors.grey[300],
-);
+      width: double.infinity,
+      height: 1.0,
+      color: Colors.grey[300],
+    );
+
 ////////////////////BUTTTON
 class DefaultButton extends StatelessWidget {
   Function onPress;
@@ -132,28 +110,14 @@ class DefaultButton extends StatelessWidget {
   Color? backgroundColor;
   Color? textColor;
   bool hasBorder;
-  DefaultButton(
-      {Key? key,
-        required this.onPress,
-        required this.text,
-        this.icon,
-        this.borderRadius,
-        this.height,
-        this.backgroundColor,
-        this.textColor,
-        this.hasBorder = false})
-      : super(key: key);
+
+  DefaultButton({Key? key, required this.onPress, required this.text, this.icon, this.borderRadius, this.height, this.backgroundColor, this.textColor, this.hasBorder = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         height: height ?? 50,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius ?? 5),
-            color: backgroundColor ?? Colors.green,
-            border: hasBorder
-                ? Border.all(color: Colors.green, width: 1)
-                : null),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius ?? 5), color: backgroundColor ?? Colors.green, border: hasBorder ? Border.all(color: Colors.green, width: 1) : null),
         child: MaterialButton(
           onPressed: () {
             onPress();
@@ -166,12 +130,13 @@ class DefaultButton extends StatelessWidget {
               Text(
                 text,
               ),
-             // if (icon != null) Icon(icon, color: Colors.white)
+              // if (icon != null) Icon(icon, color: Colors.white)
             ],
           ),
         ));
   }
 }
+
 ////////////////////////////NAV
 class NavigationUtils {
   static void navigateTo({
@@ -194,7 +159,7 @@ class NavigationUtils {
         builder: (context) => destinationScreen,
       ),
     ).then(
-          (value) => callback(),
+      (value) => callback(),
     );
   }
 
@@ -207,7 +172,7 @@ class NavigationUtils {
         MaterialPageRoute(
           builder: (context) => destinationScreen,
         ),
-            (Route<dynamic> route) => false,
+        (Route<dynamic> route) => false,
       );
 
   static void navigateBack({
@@ -220,6 +185,4 @@ class NavigationUtils {
   }
 }
 
-
 /////////////////pincode
-
